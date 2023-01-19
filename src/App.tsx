@@ -3,8 +3,21 @@ import words from './wordList.json';
 
 function App() {
   const [wordToGuess, setWordToGuess] = useState(() => words[Math.floor(Math.random() * words.length)]);
-  console.log(wordToGuess);
-  return <h1>Hi</h1>;
+  const [guessedLetters, setGuessedLetters] = useState<string[]>([]);
+  return (
+    <section
+      style={{
+        maxWidth: '800px',
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '2rem',
+        margin: '0 auto',
+        alignItems: 'center',
+      }}
+    >
+      <div style={{ fontSize: '2rem', textAlign: 'center' }}>Lose Win</div>
+    </section>
+  );
 }
 
 export default App;
