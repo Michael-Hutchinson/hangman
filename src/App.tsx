@@ -1,4 +1,7 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
+import HangmanDrawing from './HangmanDrawing';
+import HangmanWord from './HangmanWord';
+import Keyboard from './Keyboard';
 import words from './wordList.json';
 
 function App() {
@@ -16,6 +19,9 @@ function App() {
       }}
     >
       <div style={{ fontSize: '2rem', textAlign: 'center' }}>Lose Win</div>
+      <HangmanDrawing />
+      <HangmanWord />
+      <Keyboard />
     </section>
   );
 }
