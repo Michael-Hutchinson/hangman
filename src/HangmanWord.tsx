@@ -4,9 +4,10 @@ import React from 'react';
 type HangmanWordProps = {
   guessedLetters: string[];
   wordToGuess: string;
+  showWord: boolean;
 };
 
-function HangmanWord({ guessedLetters, wordToGuess }: HangmanWordProps) {
+function HangmanWord({ guessedLetters, wordToGuess, showWord = false }: HangmanWordProps) {
   return (
     <div
       style={{
@@ -20,7 +21,9 @@ function HangmanWord({ guessedLetters, wordToGuess }: HangmanWordProps) {
     >
       {wordToGuess.split('').map((letter, index) => (
         <span key={index} style={{ borderBottom: '.1em solid black' }}>
-          <span style={{ visibility: guessedLetters.includes(letter) ? 'visible' : 'hidden' }}>{letter}</span>
+          <span style={{ visibility: guessedLetters.includes(letter) || showWord ? 'visible' : 'hidden' }}>
+            {letter}
+          </span>
         </span>
       ))}
     </div>
