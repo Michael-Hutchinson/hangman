@@ -12,10 +12,10 @@ function App() {
   const hasWon = wordToGuess.split('').every((letter) => guessedLetters.includes(letter));
   const addGuessedLetter = useCallback(
     (letter: string) => {
-      if (guessedLetters.includes(letter)) return;
+      if (guessedLetters.includes(letter) || hasLost || hasWon) return;
       setGuessedLetters((currentLetters) => [...currentLetters, letter]);
     },
-    [guessedLetters],
+    [guessedLetters, hasLost, hasWon],
   );
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
@@ -48,6 +48,7 @@ function App() {
       <HangmanWord guessedLetters={guessedLetters} wordToGuess={wordToGuess} />
       <div style={{ alignSelf: 'stretch' }}>
         <Keyboard
+          disabled={hasWon || hasLost}
           activeLetters={guessedLetters.filter((letter) => wordToGuess.includes(letter))}
           inactiveLetters={incorrectLetters}
           addGuessedLetter={addGuessedLetter}
