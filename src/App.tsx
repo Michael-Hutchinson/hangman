@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import HangmanDrawing from './HangmanDrawing';
 import HangmanWord from './HangmanWord';
 import Keyboard from './Keyboard';
@@ -8,11 +8,14 @@ function App() {
   const [wordToGuess, setWordToGuess] = useState(() => words[Math.floor(Math.random() * words.length)]);
   const [guessedLetters, setGuessedLetters] = useState<string[]>([]);
   const incorrectLetters = guessedLetters.filter((letter) => !wordToGuess.includes(letter));
-  useEffect(() => {
-    function addGuessedLetter(letter: string) {
+  const addGuessedLetter = useCallback(
+    (letter: string) => {
       if (guessedLetters.includes(letter)) return;
       setGuessedLetters((currentLetters) => [...currentLetters, letter]);
-    }
+    },
+    [guessedLetters],
+  );
+  useEffect(() => {
     const handler = (e: KeyboardEvent) => {
       const { key } = e;
       if (!key.match(/^[a-z]$/)) return;
@@ -23,7 +26,7 @@ function App() {
     return () => {
       document.removeEventListener('keypress', handler);
     };
-  }, [guessedLetters]);
+  }, [addGuessedLetter]);
   return (
     <section
       style={{
