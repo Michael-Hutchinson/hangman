@@ -47,6 +47,7 @@ function Keyboard({ activeLetters, inactiveLetters, addGuessedLetter }: Keyboard
             type="button"
             key={key}
             className={`${styles.btn} ${isActive ? styles.active : ''} ${isInactive ? styles.inactive : ''}`}
+            disabled={isInactive || isActive}
           >
             {key}
           </button>
