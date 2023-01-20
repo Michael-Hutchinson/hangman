@@ -21,7 +21,12 @@ function HangmanWord({ guessedLetters, wordToGuess, showWord = false }: HangmanW
     >
       {wordToGuess.split('').map((letter, index) => (
         <span key={index} style={{ borderBottom: '.1em solid black' }}>
-          <span style={{ visibility: guessedLetters.includes(letter) || showWord ? 'visible' : 'hidden' }}>
+          <span
+            style={{
+              visibility: guessedLetters.includes(letter) || showWord ? 'visible' : 'hidden',
+              color: !guessedLetters.includes(letter) && showWord ? 'red' : 'black',
+            }}
+          >
             {letter}
           </span>
         </span>
