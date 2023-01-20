@@ -5,7 +5,8 @@ import Keyboard from './Keyboard';
 import words from './wordList.json';
 
 function App() {
-  const [wordToGuess, setWordToGuess] = useState(() => words[Math.floor(Math.random() * words.length)]);
+  const getWord = () => words[Math.floor(Math.random() * words.length)];
+  const [wordToGuess, setWordToGuess] = useState(() => getWord());
   const [guessedLetters, setGuessedLetters] = useState<string[]>([]);
   const incorrectLetters = guessedLetters.filter((letter) => !wordToGuess.includes(letter));
   const hasLost = incorrectLetters.length >= 6;
@@ -29,6 +30,19 @@ function App() {
       document.removeEventListener('keypress', handler);
     };
   }, [addGuessedLetter]);
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      const { key } = e;
+      if (key !== 'Enter') return;
+      e.preventDefault();
+      setGuessedLetters([]);
+      setWordToGuess(getWord());
+    };
+    document.addEventListener('keypress', handler);
+    return () => {
+      document.removeEventListener('keypress', handler);
+    };
+  }, []);
   return (
     <section
       style={{
