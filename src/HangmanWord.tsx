@@ -1,9 +1,12 @@
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
 
-function HangmanWord() {
-  const currentWord = 'test';
-  const guessedLetter = ['t'];
+type HangmanWordProps = {
+  guessedLetters: string[];
+  wordToGuess: string;
+};
+
+function HangmanWord({ guessedLetters, wordToGuess }: HangmanWordProps) {
   return (
     <div
       style={{
@@ -15,9 +18,9 @@ function HangmanWord() {
         fontFamily: 'monospace',
       }}
     >
-      {currentWord.split('').map((letter, index) => (
+      {wordToGuess.split('').map((letter, index) => (
         <span key={index} style={{ borderBottom: '.1em solid black' }}>
-          <span style={{ visibility: guessedLetter.includes(letter) ? 'visible' : 'hidden' }}>{letter}</span>
+          <span style={{ visibility: guessedLetters.includes(letter) ? 'visible' : 'hidden' }}>{letter}</span>
         </span>
       ))}
     </div>
