@@ -38,11 +38,20 @@ function Keyboard({ activeLetters, inactiveLetters, addGuessedLetter }: Keyboard
   ];
   return (
     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(75px, 1fr))', gap: '.5rem' }}>
-      {keys.map((key) => (
-        <button onClick={() => addGuessedLetter(key)} type="button" key={key} className={styles.btn}>
-          {key}
-        </button>
-      ))}
+      {keys.map((key) => {
+        const isActive = activeLetters.includes(key);
+        const isInactive = inactiveLetters.includes(key);
+        return (
+          <button
+            onClick={() => addGuessedLetter(key)}
+            type="button"
+            key={key}
+            className={`${styles.btn} ${isActive ? styles.active : ''} ${isInactive ? styles.inactive : ''}`}
+          >
+            {key}
+          </button>
+        );
+      })}
     </div>
   );
 }
