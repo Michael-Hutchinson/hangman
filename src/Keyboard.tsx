@@ -1,7 +1,13 @@
 import React from 'react';
 import styles from './Keyboard.module.css';
 
-function Keyboard() {
+type KeyboardProps = {
+  activeLetters: string[];
+  inactiveLetters: string[];
+  addGuessedLetter: (letter: string) => void;
+};
+
+function Keyboard({ activeLetters, inactiveLetters, addGuessedLetter }: KeyboardProps) {
   const keys = [
     'a',
     'b',
@@ -33,7 +39,7 @@ function Keyboard() {
   return (
     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(75px, 1fr))', gap: '.5rem' }}>
       {keys.map((key) => (
-        <button type="button" key={key} className={styles.btn}>
+        <button onClick={() => addGuessedLetter(key)} type="button" key={key} className={styles.btn}>
           {key}
         </button>
       ))}
