@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 import React from 'react';
 
 function HangmanWord() {
@@ -15,7 +16,7 @@ function HangmanWord() {
       }}
     >
       {currentWord.split('').map((letter, index) => (
-        <span key={letter} style={{ borderBottom: '.1em solid black' }}>
+        <span key={index} style={{ borderBottom: '.1em solid black' }}>
           <span style={{ visibility: guessedLetter.includes(letter) ? 'visible' : 'hidden' }}>{letter}</span>
         </span>
       ))}
