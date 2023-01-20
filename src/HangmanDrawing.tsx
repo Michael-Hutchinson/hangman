@@ -1,6 +1,10 @@
 import React from 'react';
 
-function HangmanDrawing() {
+type HangmanDrawingProps = {
+  numberOfGuesses: number;
+};
+
+function HangmanDrawing({ numberOfGuesses }: HangmanDrawingProps) {
   const head = (
     <div
       style={{
@@ -82,14 +86,10 @@ function HangmanDrawing() {
       }}
     />
   );
+  const bodyParts = [head, body, rightArm, leftArm, rightLeg, leftLeg];
   return (
     <div style={{ position: 'relative' }}>
-      {head}
-      {body}
-      {rightArm}
-      {leftArm}
-      {rightLeg}
-      {leftLeg}
+      {bodyParts.slice(0, numberOfGuesses)}
       <div
         style={{
           height: '50px',

@@ -7,6 +7,7 @@ import words from './wordList.json';
 function App() {
   const [wordToGuess, setWordToGuess] = useState(() => words[Math.floor(Math.random() * words.length)]);
   const [guessedLetters, setGuessedLetters] = useState<string[]>([]);
+  const incorrectLetters = guessedLetters.filter((letter) => !wordToGuess.includes(letter));
   return (
     <section
       style={{
@@ -19,7 +20,7 @@ function App() {
       }}
     >
       <div style={{ fontSize: '2rem', textAlign: 'center' }}>Lose Win</div>
-      <HangmanDrawing />
+      <HangmanDrawing numberOfGuesses={incorrectLetters.length} />
       <HangmanWord />
       <div style={{ alignSelf: 'stretch' }}>
         <Keyboard />
