@@ -11,7 +11,7 @@ function App() {
   const [wordToGuess, setWordToGuess] = useState(() => getWord());
   const [guessedLetters, setGuessedLetters] = useState<string[]>([]);
   const incorrectLetters = guessedLetters.filter((letter) => !wordToGuess.includes(letter));
-  const hasLost = incorrectLetters.length >= 6;
+  const hasLost = incorrectLetters.length >= 10;
   const hasWon = wordToGuess.split('').every((letter) => guessedLetters.includes(letter));
   const addGuessedLetter = useCallback(
     (letter: string) => {
