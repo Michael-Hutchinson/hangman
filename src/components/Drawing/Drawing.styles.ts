@@ -1,5 +1,22 @@
 import styled from 'styled-components';
 
+export const Base = styled.div`
+  height: 10px;
+  width: 250px;
+  background: black;
+  position: absolute;
+  bottom: 0;
+`;
+
+export const Line = styled.div`
+  height: 400px;
+  width: 10px;
+  background: black;
+  margin-left: 120px;
+  position: absolute;
+  bottom: 0;
+`;
+
 export const Head = styled.div`
   width: 50px;
   height: 50px;
