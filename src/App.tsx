@@ -49,8 +49,11 @@ function App() {
     <>
       <GlobalStyle />
       <main>
-        <AlertMessage isOpen={hasWon} severity="success" message="You won" />
-        <AlertMessage isOpen={hasLost} severity="error" message="You lost" />
+        <AlertMessage
+          isOpen={hasWon || hasLost}
+          severity={hasWon ? 'success' : 'error'}
+          message={hasWon ? 'You Won' : 'You Lost'}
+        />
         <Drawing numberOfGuesses={incorrectLetters.length} />
         <Word showWord={hasLost} guessedLetters={guessedLetters} wordToGuess={wordToGuess} />
         <Keyboard
