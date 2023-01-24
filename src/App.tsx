@@ -3,6 +3,8 @@ import HangmanDrawing from './HangmanDrawing';
 import HangmanWord from './HangmanWord';
 import Keyboard from './components/Keyboard/Keyboard';
 import words from './wordList.json';
+import GlobalStyle from './App.styles';
+import AlertMessage from './components/Alert/Alert';
 
 function App() {
   const getWord = () => words[Math.floor(Math.random() * words.length)];
@@ -44,31 +46,23 @@ function App() {
     };
   }, []);
   return (
-    <section
-      style={{
-        maxWidth: '800px',
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '2rem',
-        margin: '0 auto',
-        alignItems: 'center',
-      }}
-    >
-      <div style={{ fontSize: '2rem', textAlign: 'center' }}>
-        {hasWon && 'Winner - Refresh to play again'}
-        {hasLost && 'Loser - Refresh to play again'}
-      </div>
-      <HangmanDrawing numberOfGuesses={incorrectLetters.length} />
-      <HangmanWord showWord={hasLost} guessedLetters={guessedLetters} wordToGuess={wordToGuess} />
-      <div style={{ alignSelf: 'stretch' }}>
-        <Keyboard
-          disabled={hasWon || hasLost}
-          activeLetters={guessedLetters.filter((letter) => wordToGuess.includes(letter))}
-          inactiveLetters={incorrectLetters}
-          addGuessedLetter={addGuessedLetter}
-        />
-      </div>
-    </section>
+    <>
+      <GlobalStyle />
+      <main>
+        <AlertMessage isOpen={hasWon} severity="success" message="You won" />
+        <AlertMessage isOpen={hasLost} severity="error" message="You lost" />
+        <HangmanDrawing numberOfGuesses={incorrectLetters.length} />
+        <HangmanWord showWord={hasLost} guessedLetters={guessedLetters} wordToGuess={wordToGuess} />
+        <div style={{ alignSelf: 'stretch' }}>
+          <Keyboard
+            disabled={hasWon || hasLost}
+            activeLetters={guessedLetters.filter((letter) => wordToGuess.includes(letter))}
+            inactiveLetters={incorrectLetters}
+            addGuessedLetter={addGuessedLetter}
+          />
+        </div>
+      </main>
+    </>
   );
 }
 
