@@ -1,13 +1,13 @@
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
 
-type HangmanWordProps = {
+type WordProps = {
   guessedLetters: string[];
   wordToGuess: string;
   showWord: boolean;
 };
 
-function HangmanWord({ guessedLetters, wordToGuess, showWord = false }: HangmanWordProps) {
+function Word({ guessedLetters, wordToGuess, showWord = false }: WordProps) {
   return (
     <div
       style={{
@@ -35,4 +35,4 @@ function HangmanWord({ guessedLetters, wordToGuess, showWord = false }: HangmanW
   );
 }
 
-export default HangmanWord;
+export default Word;

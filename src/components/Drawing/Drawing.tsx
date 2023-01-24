@@ -1,10 +1,10 @@
 import React from 'react';
 
-type HangmanDrawingProps = {
+type DrawingProps = {
   numberOfGuesses: number;
 };
 
-function HangmanDrawing({ numberOfGuesses }: HangmanDrawingProps) {
+function Drawing({ numberOfGuesses }: DrawingProps) {
   const head = (
     <div
       style={{
@@ -108,4 +108,4 @@ function HangmanDrawing({ numberOfGuesses }: HangmanDrawingProps) {
   );
 }
 
-export default HangmanDrawing;
+export default Drawing;

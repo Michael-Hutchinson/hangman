@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import HangmanDrawing from './HangmanDrawing';
-import HangmanWord from './HangmanWord';
+import Drawing from './components/Drawing/Drawing';
+import Word from './components/Word/Word';
 import Keyboard from './components/Keyboard/Keyboard';
 import words from './wordList.json';
 import GlobalStyle from './App.styles';
@@ -51,16 +51,14 @@ function App() {
       <main>
         <AlertMessage isOpen={hasWon} severity="success" message="You won" />
         <AlertMessage isOpen={hasLost} severity="error" message="You lost" />
-        <HangmanDrawing numberOfGuesses={incorrectLetters.length} />
-        <HangmanWord showWord={hasLost} guessedLetters={guessedLetters} wordToGuess={wordToGuess} />
-        <div style={{ alignSelf: 'stretch' }}>
-          <Keyboard
-            disabled={hasWon || hasLost}
-            activeLetters={guessedLetters.filter((letter) => wordToGuess.includes(letter))}
-            inactiveLetters={incorrectLetters}
-            addGuessedLetter={addGuessedLetter}
-          />
-        </div>
+        <Drawing numberOfGuesses={incorrectLetters.length} />
+        <Word showWord={hasLost} guessedLetters={guessedLetters} wordToGuess={wordToGuess} />
+        <Keyboard
+          disabled={hasWon || hasLost}
+          activeLetters={guessedLetters.filter((letter) => wordToGuess.includes(letter))}
+          inactiveLetters={incorrectLetters}
+          addGuessedLetter={addGuessedLetter}
+        />
       </main>
     </>
   );
